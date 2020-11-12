@@ -1,3 +1,3 @@
 # Employee-Payroll-App-Web-Dev
 
-Modified to UC 2 - Ability to create a Form Header and the Input Text Element for Name
+Modified to UC 3 - Ability to specify the Profile Pic in the Form
