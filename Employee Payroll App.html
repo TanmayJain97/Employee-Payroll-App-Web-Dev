@@ -121,11 +121,11 @@
         <form class="form" action="#" onsubmit="save();return false">
             <div class="form-head">Employee Payroll App</div>
             <div class="row-content">
-                <label class="label text" for="name">Employee Name</label>
+                <label class="label text" for="name">Employee Name: </label>
                 <input class="input" type="text" id="name" name="name" placeholder="Enter Employee Name..." required>
             </div>
             <div class="row-content">
-                <label class="label text" for="profile">Profile Image</label>
+                <label class="label text" for="profile">Profile Image: </label>
                 <div class="profile-radio-content">
                     <label>
                         <input type="radio" id="profile1" name="profile" value="./Assets/profile-images/Ellipse -7.png" required>
@@ -149,7 +149,37 @@
                     </label>
                 </div>
             </div>
-            
+            <div class="row-content">
+                <label class="label text" for="gender">Gender: </label>
+                <div>
+                    <input type="radio" id="male" name="gender" value="M">
+                    <label class="text" for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="F">
+                    <label class="text" for="female">Female</label>
+                </div>
+            </div>
+            <div class="row-content">
+                <label class="label text" for="department">Department: </label>
+                <div>
+                    <input class="checkbox" type="checkbox" id="hr" name="hr" value="HR">
+                    <label class="text" for="hr">HR</label>
+                    <input class="checkbox" type="checkbox" id="marketing&sales" name="marketing&sales" value="Marketing&Sales">
+                    <label class="text" for="marketing&sales">Marketing & Sales</label>
+                    <input class="checkbox" type="checkbox" id="finance" name="finance" value="Finance">
+                    <label class="text" for="sales">Finance</label>
+                    <input class="checkbox" type="checkbox" id="admin" name="admin" value="Admin">
+                    <label class="text" for="admin">Admin</label>
+                    <input class="checkbox" type="checkbox" id="Others" name="others" value="others">
+                    <label class="text" for="others">Others</label>
+                </div>
+            </div>
+            <div>
+                <div class="row-content">
+                    <label class="label text" for="salary">Choose your Salary: </label>
+                    <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="1000" value="400000">
+                    <output class="salary-output text" for="salary">400000</output>
+                </div>
+            </div>
         </form>
     </div>
 </body>
