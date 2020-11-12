@@ -22,7 +22,9 @@ class EmployeePayrollData{
     }
     get name(){ return this._name;}
     set name(name){
-        this._name = name;
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$')
+        if(nameRegex.test(name)) this._name = name;
+        else throw "Name is Incorrect!";
     }
 
     get profilePic() {return this._profilePic;}
@@ -47,7 +49,11 @@ class EmployeePayrollData{
 
     get startDate() {return this._startDate;}
     set startDate(startDate){
-        this._startDate = new Date(startDate[2],startDate[1],startDate[0]);
+        let newDate = new Date(startDate[2],startDate[1],startDate[0]);
+        let startDateCompare = dates.compare(newDate,new Date());
+        if(startDateCompare<=0) this._startDate = newDate;
+        else throw 'Start Date is incorrect';
+        
     }
 
     get notes() {return this._notes}
