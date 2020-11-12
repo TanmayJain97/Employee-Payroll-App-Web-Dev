@@ -1,3 +1,3 @@
 # Employee-Payroll-App-Web-Dev
 
-Modified to UC 5 - Ability to specify the start date with Day, Month and Year as Select Input Item
+Modified to UC 6 - Ability to add Notes as well as cancel, reset and submit button
