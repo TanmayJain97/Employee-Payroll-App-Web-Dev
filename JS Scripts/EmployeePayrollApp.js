@@ -150,3 +150,17 @@ function createAndUpdateStorage(employeeData){
     console.log(employeePayrollList);
     localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
 }
+
+const resetForm = ()=>{
+    setValue('#salary',400000);
+    const salary = document.querySelector('#salary');
+    const output = document.querySelector('.salary-output');
+    output.textContent = salary.value;
+    salary.addEventListener('input',function(){
+        output.textContent = salary.value;
+    });
+}
+const setValue = (id,value)=>{
+    const element = document.querySelector(id);
+    element.value=value;
+}

@@ -1,3 +1,3 @@
 # Employee-Payroll-App-Web-Dev
 
-Modified to UC 4 - Ability to save the Employee Payroll Object to Local Storage.
+Modified to UC 5 - Ability to reset the form on clicking reset
