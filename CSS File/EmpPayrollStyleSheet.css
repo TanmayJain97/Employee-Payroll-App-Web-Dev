@@ -31,6 +31,8 @@ body{
 }
 .emp-payroll {color: #42515f;}
 *{box-sizing: border-box;}
+.emp-system {color: #42515f;}
+*{box-sizing: border-box;}
 
 .form-content{
     min-height: calc(100%-80px);
@@ -51,7 +53,7 @@ body{
 .form-head{
     font: normal normal bold 24px/37px Roboto;
     letter-spacing: 0px;
-    color: #42515f;
+    color: #adaf12;
     text-transform: capitalize;
     opacity: 1;
     padding-bottom: 20px;
@@ -143,6 +145,12 @@ select{
 .cancelButton{
     text-decoration: none;
     text-align: center;
+}
+error-output{
+    margin-left: 80%;
+    font-size: 15px;
+    font-style: bold;
+    color: red;
 }
 @media only screen and (max-width: 960px){
     .cancelButton{
