@@ -28,32 +28,12 @@
             </div>
             <a href="./Employee Payroll App.html" class="add-button"><img src="./Assets/icons/add-24px.svg" alt="Add Employee">Add user</a>
         </div>
+        
+        <div class="table-main">
+        <table id = "table-display" class="table"></table>
+        </div>
     </div>
-    <table id = "Table Display" class="table">
-        <tr>
-            <th></th>
-            <th>Emp Name</th>
-            <th>Gender</th>
-            <th>Department</th>
-            <th>Salary</th>
-            <th>Start Date</th>
-            <th>Actions</th>
-        </tr>
-        <tr>
-            <td><img class="profile" src="./Assets/profile-images/Ellipse -5.png"></td>
-            <td>Narayan Mahadevan</td>
-            <td>Male</td>
-            <td><div class="dept-label">HR</div>
-                <div class="dept-label">FINANCE</div>
-            </td>
-            <td>RS 300000</td>
-            <td>1 Nov 2020</td>
-            <td>
-                <img id="1" onclick="remove()" alt="delete" src="./Assets/icons/delete-black-18dp.svg">
-                <img id="1" onclick="update()" alt="edit" src="./Assets/icons/create-black-18dp.svg">
-            </td>
-        </tr>
-    </table>
+    <script src="./JS Scripts/Home Page.js"></script>
     <script>
         function remove(){
             console.log("Delete this entry.");
