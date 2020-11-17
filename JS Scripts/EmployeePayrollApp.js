@@ -14,6 +14,21 @@ window.addEventListener('DOMContentLoaded',(event)=>{
         }
     });
 
+    const startDate = document.querySelector("#startDate");
+    let newDate=new Array();
+    newDate.push(document.querySelector("#day"));
+    newDate.push(document.querySelector("#month"));
+    newDate.push(document.querySelector("#year"));
+    const dateError = document.querySelector(".date-error");
+    startDate.addEventListener("input", function() {
+        try {
+            (new EmployeePayrollData()).startDate = newDate;
+            dateError.textContent = "";
+        } catch (exception) {
+            dateError.textContent = exception;
+        }
+    });
+
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
     output.textContent = salary.value;
@@ -140,6 +155,8 @@ const resetForm = ()=>{
     output.textContent = 400000;
     const textError = document.querySelector('.text-error');
     textError.textContent = "";
+    const dateError = document.querySelector(".date-error");
+    dateError.textContent = "";
 }
 const setValue = (id,value)=>{
     const element = document.querySelector(id);
