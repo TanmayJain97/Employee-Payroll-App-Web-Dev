@@ -1,3 +1,3 @@
 # Employee-Payroll-App-Web-Dev
 
-Modified to UC 5 - Ability to reset the form on clicking reset
+Modified to UC 1 - Ability to create an Employee Payroll System Home Page UI
