@@ -1,6 +1,16 @@
-window.addEventListener('DOMContentLoaded',(event)=>{
+let empPayrollList=new Array();
+
+window.addEventListener("DOMContentLoaded", (event) => {
+    empPayrollList = getEmpDataFromLocalStorage();
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHTML();
-})
+    localStorage.removeItem("editEmp");
+});
+
+function getEmpDataFromLocalStorage(){
+    return localStorage.getItem("EmployeePayrollList") ?
+        JSON.parse(localStorage.getItem("EmployeePayrollList")) : [];
+};
 
 function createInnerHTML(){
     const headerHTML=
@@ -12,8 +22,11 @@ function createInnerHTML(){
         "<th>Start Date</th>"+
         "<th>Actions</th>";
 
+    if (empPayrollList.length==0){
+        console.log("No data found in Local Storage")
+        return;
+    }
     let innerHTML=`${headerHTML}`;
-    let empPayrollList = createEmployeePayrollJson();
     for(const empData of empPayrollList){
         innerHTML=`${innerHTML}
         <tr>
@@ -22,7 +35,7 @@ function createInnerHTML(){
             <td>${empData._gender}</td>
             <td>${getDeptHTML(empData._department)}</td>
             <td>RS ${empData._salary}</td>
-            <td>${empData._startDate}</td>
+            <td>${(empData._startDate).slice(0,10)}</td>
             <td>
                 <img id="${empData._id}" onclick="remove()" alt="delete" src="./Assets/icons/delete-black-18dp.svg">
                 <img id="${empData._id}" onclick="update()" alt="edit" src="./Assets/icons/create-black-18dp.svg">
