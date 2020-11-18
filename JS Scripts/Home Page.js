@@ -35,9 +35,9 @@ function createInnerHTML(){
             <td>${empData._gender}</td>
             <td>${getDeptHTML(empData._department)}</td>
             <td>RS ${empData._salary}</td>
-            <td>${(empData._startDate).slice(0,10)}</td>
+            <td>${stringifyDate(empData._startDate)}</td>
             <td>
-                <img id="${empData._id}" onclick="remove()" alt="delete" src="./Assets/icons/delete-black-18dp.svg">
+                <img id="${empData._id}" onclick="remove(this)" alt="delete" src="./Assets/icons/delete-black-18dp.svg">
                 <img id="${empData._id}" onclick="update()" alt="edit" src="./Assets/icons/create-black-18dp.svg">
             </td>
         </tr>
@@ -78,4 +78,18 @@ function createEmployeePayrollJson(){
         }
     ]
     return empPayrollLocalList;
+}
+
+function remove(node){
+    let empPayrollData = empPayrollList.find(empData=>empData._id == node.id);
+    if(!empPayrollData){
+        console.log("No entry found!!");
+        return;
+    }
+    const index = empPayrollList.map(empData=>empData._id)
+                                .indexOf(empPayrollData._id);
+    empPayrollList.splice(index,1);
+    localStorage.setItem("EmployeePayrollList",JSON.stringify(empPayrollList));
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
+    createInnerHTML();
 }

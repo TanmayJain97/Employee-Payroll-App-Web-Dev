@@ -99,6 +99,7 @@ function save() {
         const output = document.querySelector('.salary-output');
 
         employeeData.name = document.getElementById('name').value;
+        employeeData.id=getid();
         employeeData.profilePic = getRadioValue(document.getElementsByName('profile'));
         employeeData.gender = getRadioValue(document.getElementsByName('gender'));
         employeeData.department = getCheckBoxValue(document.getElementsByClassName('checkbox'));
@@ -157,8 +158,39 @@ const resetForm = ()=>{
     textError.textContent = "";
     const dateError = document.querySelector(".date-error");
     dateError.textContent = "";
+
+    unsetSelectedValues('[name=profile]');
+    unsetSelectedValues('[name=gender]');
+    unsetSelectedValues('[name=department]');
+    setValue('#name','');
+    setValue('#notes','');
+    setValue('#day','1');
+    setValue('#month','1');
+    setValue('#year','2020');
 }
 const setValue = (id,value)=>{
     const element = document.querySelector(id);
     element.value=value;
+}
+
+const unsetSelectedValues = (propertyValue)=>{
+    let allItems = document.querySelectorAll(propertyValue)
+    allItems.forEach(item=>{
+        item.checked=false;
+    })
+}
+
+function getEmpDataFromLocalStorage(){
+    return localStorage.getItem("EmployeePayrollList") ?
+        JSON.parse(localStorage.getItem("EmployeePayrollList")) : [];
+};
+
+function getid(){
+    let empList=getEmpDataFromLocalStorage();
+    return empList.length+1;
+}
+
+function saveNreset(){
+    save();
+    resetForm();
 }
