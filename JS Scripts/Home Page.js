@@ -38,7 +38,7 @@ function createInnerHTML(){
             <td>${stringifyDate(empData._startDate)}</td>
             <td>
                 <img id="${empData._id}" onclick="remove(this)" alt="delete" src="./Assets/icons/delete-black-18dp.svg">
-                <img id="${empData._id}" onclick="update()" alt="edit" src="./Assets/icons/create-black-18dp.svg">
+                <img id="${empData._id}" onclick="update(this)" alt="edit" src="./Assets/icons/create-black-18dp.svg">
             </td>
         </tr>
         `;
@@ -92,4 +92,14 @@ function remove(node){
     localStorage.setItem("EmployeePayrollList",JSON.stringify(empPayrollList));
     document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHTML();
+}
+
+function update(node){
+    let empPayrollData = empPayrollList.find(empData=>empData._id == node.id);
+    if(!empPayrollData){
+        console.log("No entry found!!");
+        return;
+    }
+    localStorage.setItem('editEmp', JSON.stringify(empPayrollData,'\t', 2));
+    window.location.replace(site_properties.add_emp_payroll_page);
 }
