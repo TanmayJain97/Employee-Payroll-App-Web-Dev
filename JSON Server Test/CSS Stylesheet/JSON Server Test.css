@@ -1,0 +1,11 @@
+.body {
+    margin: auto;
+}
+div{
+    border: 1px dotted red;
+    background-color: lightblue;
+    padding: 50px;
+    width: 80%;
+    font-size: xx-large;
+    margin-top: 50px;
+}
