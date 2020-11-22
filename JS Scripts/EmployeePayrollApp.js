@@ -1,5 +1,4 @@
 let isUpdate=false;
-let employeePayrollObj={};
 
 window.addEventListener('DOMContentLoaded',(event)=>{
     const name = document.querySelector('#name');
@@ -98,6 +97,8 @@ class EmployeePayrollData{
     }
 }
 
+let employeePayrollObj=new EmployeePayrollData();
+
 const save = (event)=>{
     event.preventDefault();
     event.stopPropagation();
@@ -105,7 +106,7 @@ const save = (event)=>{
         setEmployeePayrollObject();
         createAndUpdateStorage();
         resetForm();
-        //window.location.replace(site_properties.home_page);
+        window.location.replace(site_properties.home_page);
     }catch(exception){
         console.error(exception);
         return;
@@ -117,7 +118,7 @@ function setEmployeePayrollObject() {
         const output = document.querySelector('.salary-output');
 
         employeePayrollObj._name = document.getElementById('name').value;
-        employeePayrollObj._id=createNewEmployeeId();
+        //employeePayrollObj._id=createNewEmployeeId();
         employeePayrollObj._profilePic = getRadioValue(document.getElementsByName('profile'));
         employeePayrollObj._gender = getRadioValue(document.getElementsByName('gender'));
         employeePayrollObj._department = getCheckBoxValue(document.getElementsByClassName('checkbox'));
@@ -161,7 +162,7 @@ function createAndUpdateStorage(){
         else{
             const index = employeePayrollList.map(empData => empData._id)
                                              .indexOf(employeeData._id);
-            employeePayrollList.splice(index, 1, createEmployeePayrollData(employeeData._id));
+            employeePayrollList.splice(index, 1, createEmpData(employeeData._id));
         }
     }else{
         employeePayrollList=[createEmpData()];
@@ -170,11 +171,10 @@ function createAndUpdateStorage(){
     localStorage.setItem("EmployeePayrollList",JSON.stringify(employeePayrollList));
 }
 const createEmpData = (id) => {
-    let employeePayrollData = new EmployeePayrollData();
-    if (!id) employeePayrollData.id = createNewEmployeeId();
-    else employeePayrollData.id = id;
-    setEmployeePayrollData(employeePayrollData);
-    return employeePayrollData;
+    if (!id) employeePayrollObj.id = createNewEmployeeId();
+    else employeePayrollObj._id = id;
+    //setEmployeePayrollData(employeePayrollData);
+    return employeePayrollObj;
 }
 function setEmployeePayrollData(employeePayrollData){
 
