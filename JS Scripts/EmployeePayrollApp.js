@@ -1,4 +1,5 @@
 let isUpdate=false;
+let employeePayrollObj={};
 
 window.addEventListener('DOMContentLoaded',(event)=>{
     const name = document.querySelector('#name');
@@ -9,7 +10,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
             return;
         }
         try {
-            (new EmployeePayrollData()).name = name.value;
+            nameCheck(name.value);
             textError.textContent = "";
         } catch (exception) {
             textError.textContent = exception;
@@ -24,7 +25,7 @@ window.addEventListener('DOMContentLoaded',(event)=>{
         newDate.push(document.querySelector("#month").value);
         newDate.push(document.querySelector("#year").value);
         try {
-            (new EmployeePayrollData()).startDate = newDate;
+            dateCheck(newDate);
             dateError.textContent = "";
         } catch (exception) {
             dateError.textContent = exception;
@@ -42,62 +43,70 @@ window.addEventListener('DOMContentLoaded',(event)=>{
     checkForUpdate();
 });
 
-class EmployeePayrollData{
-
-    get id() {return this._id;}
-    set id(id){
-        this._id=id;
-    }
-    get name(){ return this._name;}
-    set name(name){
-        let nameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$')
-        if(nameRegex.test(name)) this._name = name;
-        else throw "Name is Invalid!";
-    }
-
-    get profilePic() {return this._profilePic;}
-    set profilePic(profilePic){
-        this._profilePic = profilePic;
-    }
-
-    get gender() {return this._gender;}
-    set gender(gender){
-        this._gender = gender;
-    }
-
-    get department() {return this._department;}
-    set department(department){
-        this._department = department;
-    }
-
-    get salary() {return this._salary;}
-    set salary(salary){
-        this._salary = salary;
-    }
-
-    get startDate() {return this._startDate;}
-    set startDate(startDate){
-        let newDate = new Date(startDate[2],(startDate[1]-1),startDate[0]);
-        //console.log(newDate);
-        if(newDate<=new Date()) this._startDate = newDate;
-        else throw 'Start Date is incorrect';
-    }
-
-    get notes() {return this._notes}
-    set notes(notes){
-        this._notes = notes;
-    }
-
-    //toString method
-    toString(){
-        return "id="+this.id+" : name="+this.name+
-                " : gender="+this.gender+" : Dept="+this.department+
-                " : salary="+this.salary+" : Start Date="+empDate+
-                " : Notes="+this.notes;
-    }
+function nameCheck(name){
+    let nameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$')
+    if(!nameRegex.test(name)) throw "Name is Invalid!";
 }
 
-let employeePayrollObj=new EmployeePayrollData();
+function dateCheck(startDate){
+    let newDate = new Date(startDate[2],(startDate[1]-1),startDate[0]);
+    if(!(newDate<=new Date())) throw 'Start Date is incorrect'; 
+}
+
+// class EmployeePayrollData{
+
+//     get id() {return this._id;}
+//     set id(id){
+//         this._id=id;
+//     }
+//     get name(){ return this._name;}
+//     set name(name){
+//         let nameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$')
+//         if(nameRegex.test(name)) this._name = name;
+//         else throw "Name is Invalid!";
+//     }
+
+//     get profilePic() {return this._profilePic;}
+//     set profilePic(profilePic){
+//         this._profilePic = profilePic;
+//     }
+
+//     get gender() {return this._gender;}
+//     set gender(gender){
+//         this._gender = gender;
+//     }
+
+//     get department() {return this._department;}
+//     set department(department){
+//         this._department = department;
+//     }
+
+//     get salary() {return this._salary;}
+//     set salary(salary){
+//         this._salary = salary;
+//     }
+
+//     get startDate() {return this._startDate;}
+//     set startDate(startDate){
+//         let newDate = new Date(startDate[2],(startDate[1]-1),startDate[0]);
+//         //console.log(newDate);
+//         if(newDate<=new Date()) this._startDate = newDate;
+//         else throw 'Start Date is incorrect';
+//     }
+
+//     get notes() {return this._notes}
+//     set notes(notes){
+//         this._notes = notes;
+//     }
+
+//     //toString method
+//     toString(){
+//         return "id="+this.id+" : name="+this.name+
+//                 " : gender="+this.gender+" : Dept="+this.department+
+//                 " : salary="+this.salary+" : Start Date="+empDate+
+//                 " : Notes="+this.notes;
+//     }
+// }
 
 const save = (event)=>{
     event.preventDefault();
@@ -118,7 +127,7 @@ function setEmployeePayrollObject() {
         const output = document.querySelector('.salary-output');
 
         employeePayrollObj._name = document.getElementById('name').value;
-        //employeePayrollObj._id=createNewEmployeeId();
+        //employeePayrollObj.id=createNewEmployeeId();
         employeePayrollObj._profilePic = getRadioValue(document.getElementsByName('profile'));
         employeePayrollObj._gender = getRadioValue(document.getElementsByName('gender'));
         employeePayrollObj._department = getCheckBoxValue(document.getElementsByClassName('checkbox'));
@@ -157,12 +166,12 @@ function getCheckBoxValue(boxes) {
 function createAndUpdateStorage(){
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
     if(employeePayrollList){
-        let employeeData = employeePayrollList.find(empData => empData._id == employeePayrollObj._id);
+        let employeeData = employeePayrollList.find(empData => empData.id == employeePayrollObj.id);
         if (!employeeData) employeePayrollList.push(createEmpData());
         else{
-            const index = employeePayrollList.map(empData => empData._id)
-                                             .indexOf(employeeData._id);
-            employeePayrollList.splice(index, 1, createEmpData(employeeData._id));
+            const index = employeePayrollList.map(empData => empData.id)
+                                             .indexOf(employeeData.id);
+            employeePayrollList.splice(index, 1, createEmpData(employeeData.id));
         }
     }else{
         employeePayrollList=[createEmpData()];
@@ -172,7 +181,7 @@ function createAndUpdateStorage(){
 }
 const createEmpData = (id) => {
     if (!id) employeePayrollObj.id = createNewEmployeeId();
-    else employeePayrollObj._id = id;
+    else employeePayrollObj.id = id;
     //setEmployeePayrollData(employeePayrollData);
     return employeePayrollObj;
 }
@@ -205,7 +214,7 @@ function createNewEmployeeId(){
     let randID=1;
     for (var emp in empList){
         randID=Math.floor(Math.random() * 1000)+1;
-        if (emp._id==randID) continue;
+        if (emp.id==randID) continue;
     }
     return randID;
 }

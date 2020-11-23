@@ -37,8 +37,8 @@ function createInnerHTML(){
             <td>RS ${empData._salary}</td>
             <td>${stringifyDate(empData._startDate)}</td>
             <td>
-                <img id="${empData._id}" onclick="remove(this)" alt="delete" src="./Assets/icons/delete-black-18dp.svg">
-                <img id="${empData._id}" onclick="update(this)" alt="edit" src="./Assets/icons/create-black-18dp.svg">
+                <img id="${empData.id}" onclick="remove(this)" alt="delete" src="./Assets/icons/delete-black-18dp.svg">
+                <img id="${empData.id}" onclick="update(this)" alt="edit" src="./Assets/icons/create-black-18dp.svg">
             </td>
         </tr>
         `;
@@ -63,7 +63,7 @@ function createEmployeePayrollJson(){
             _salary:'500000',
             _startDate:'29 Oct 2019',
             _note:'',
-            _id: new Date().getTime(),
+            id: new Date().getTime(),
             _profilePic:'./Assets/profile-images/Ellipse -5.png'
         },
         {
@@ -73,7 +73,7 @@ function createEmployeePayrollJson(){
             _salary:'400000',
             _startDate:'18 Nov 2020',
             _note:'',
-            _id: new Date().getTime()+1,
+            id: new Date().getTime()+1,
             _profilePic:'./Assets/profile-images/Ellipse -7.png'
         }
     ]
@@ -81,13 +81,13 @@ function createEmployeePayrollJson(){
 }
 
 function remove(node){
-    let empPayrollData = empPayrollList.find(empData=>empData._id == node.id);
+    let empPayrollData = empPayrollList.find(empData=>empData.id == node.id);
     if(!empPayrollData){
         console.log("No entry found!!");
         return;
     }
-    const index = empPayrollList.map(empData=>empData._id)
-                                .indexOf(empPayrollData._id);
+    const index = empPayrollList.map(empData=>empData.id)
+                                .indexOf(empPayrollData.id);
     empPayrollList.splice(index,1);
     localStorage.setItem("EmployeePayrollList",JSON.stringify(empPayrollList));
     document.querySelector(".emp-count").textContent = empPayrollList.length;
@@ -95,7 +95,7 @@ function remove(node){
 }
 
 function update(node){
-    let empPayrollData = empPayrollList.find(empData=>empData._id == node.id);
+    let empPayrollData = empPayrollList.find(empData=>empData.id == node.id);
     if(!empPayrollData){
         console.log("No entry found!!");
         return;
