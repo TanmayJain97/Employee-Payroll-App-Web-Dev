@@ -1,5 +1,5 @@
 # Employee-Payroll-App-Web-Dev
 
-Modified to UC 1 - Create a simple html file to test the
+Modified to UC 3 Stage 1 - Convert Employee Payroll App to Client Server Architecture
 
-REST services with JSON Server using Promise for Employee Payroll App
+Modify all Base functions as C-S specific
