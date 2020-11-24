@@ -113,7 +113,11 @@ const save = (event)=>{
     event.stopPropagation();
     try{
         setEmployeePayrollObject();
-        createAndUpdateStorage();
+        if(site_properties.from_local){
+            createAndUpdateStorage();
+        }else{
+            createAndUpdateJSONFile();
+        }
         resetForm();
         window.location.replace(site_properties.home_page);
     }catch(exception){
@@ -223,7 +227,6 @@ function checkForUpdate(){
     isUpdate = employeePayrollJson?true:false;
     if(!isUpdate) return;
     employeePayrollObj = JSON.parse(employeePayrollJson);
-    console.log(employeePayrollJson);
     console.log(employeePayrollObj);
     setForm();
 }
@@ -267,4 +270,19 @@ const setCheckBox = (boxes, value) => {
 const setTextValue=(id,value)=>{
     const element = document.querySelector(id)
     element.textContent=value;
+}
+
+function createAndUpdateJSONFile(){
+    let methodURL=site_properties.json_host_server;
+    let methodCall="POST";
+    if(isUpdate){
+        methodCall="PUT";
+        methodURL=methodURL+employeePayrollObj.id;
+    }
+    makePromiseCall(methodCall, methodURL, true, employeePayrollObj)
+        .then(responseText => {
+        console.log(employeePayrollObj);
+    }).catch(error => {
+        console.log(methodCall+" Error Staus: " + JSON.stringify(error));
+    });
 }
