@@ -3,38 +3,40 @@
     {
       "id": 1,
       "_name": "Mark",
-      "_gender": "male",
+      "_gender": "M",
       "_department": [
-        "Engineering",
+        "Others",
         "Finance"
       ],
       "_salary": "500000",
       "_startDate": "2019-10-28T18:30:00.000Z",
-      "_note": "All In One",
-      "_profilePic": "../Assets/profile-images/Ellipse -2.png"
+      "_notes": "All In One",
+      "_profilePic": "./Assets/profile-images/Ellipse -2.png"
     },
     {
       "id": 2,
       "_name": "Bill Gates",
-      "_gender": "male",
+      "_gender": "M",
       "_department": [
-        "Engineering"
+        "Admin",
+        "Others"
       ],
-      "_salary": "500000",
+      "_salary": "480000",
       "_startDate": "2019-10-28T18:30:00.000Z",
-      "_note": "Terrific Engineer",
-      "_profilePic": "../Assets/profile-images/Ellipse -3.png"
+      "_notes": "Terrific Engineer",
+      "_profilePic": "./Assets/profile-images/Ellipse -3.png"
     },
     {
       "_name": "Amarpa Shashanka Keerthi Kumar",
-      "_gender": "female",
+      "_gender": "F",
       "_department": [
-        "Sales"
+        "Marketing&Sales",
+        "Admin"
       ],
-      "_salary": "400000",
-      "_startDate": "2019-10-28T18:30:00.000Z",
-      "_note": "",
-      "_profilePic": "../Assets/profile-images/Ellipse 1.png",
+      "_salary": "455000",
+      "_startDate": "2019-10-27T18:30:00.000Z",
+      "_notes": "TRANSFER",
+      "_profilePic": "./Assets/profile-images/Ellipse -4.png",
       "id": 3
     }
   ]
