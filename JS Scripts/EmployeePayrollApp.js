@@ -115,11 +115,11 @@ const save = (event)=>{
         setEmployeePayrollObject();
         if(site_properties.from_local){
             createAndUpdateStorage();
+            resetForm();
+            window.location.replace(site_properties.home_page);
         }else{
             createAndUpdateJSONFile();
         }
-        resetForm();
-        window.location.replace(site_properties.home_page);
     }catch(exception){
         console.error(exception);
         return;
@@ -284,5 +284,7 @@ function createAndUpdateJSONFile(){
         console.log(employeePayrollObj);
     }).catch(error => {
         console.log(methodCall+" Error Staus: " + JSON.stringify(error));
+        resetForm();
+        window.location.replace(site_properties.home_page);
     });
 }

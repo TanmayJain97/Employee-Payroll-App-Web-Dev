@@ -3,8 +3,6 @@ let empPayrollList=new Array();
 window.addEventListener("DOMContentLoaded", (event) => {
     if (site_properties.from_local) getEmpDataFromLocalStorage();
     else getEmpDataFromJSONServer();
-
-    processLocalStorageResponse();
 });
 
 
@@ -12,7 +10,7 @@ function getEmpDataFromLocalStorage(){
     empPayrollList=localStorage.getItem("EmployeePayrollList") ?
         JSON.parse(localStorage.getItem("EmployeePayrollList")) : [];
     
-    createInnerHTML();
+    processLocalStorageResponse()
 };
 
 function getEmpDataFromJSONServer(){
@@ -21,7 +19,7 @@ function getEmpDataFromJSONServer(){
         .then(responseText => {
         empPayrollList=(JSON.parse(responseText));
         console.log(empPayrollList);
-        createInnerHTML();
+        processLocalStorageResponse()
     }).catch(error => {
         console.log("GET Error Staus: " + JSON.stringify(error));
     });
@@ -29,7 +27,7 @@ function getEmpDataFromJSONServer(){
 
 function processLocalStorageResponse(){
     document.querySelector(".emp-count").textContent = empPayrollList.length;
-    
+    createInnerHTML();
     localStorage.removeItem("editEmp");
 }
 
@@ -111,9 +109,22 @@ function remove(node){
     const index = empPayrollList.map(empData=>empData.id)
                                 .indexOf(empPayrollData.id);
     empPayrollList.splice(index,1);
-    localStorage.setItem("EmployeePayrollList",JSON.stringify(empPayrollList));
-    document.querySelector(".emp-count").textContent = empPayrollList.length;
+
+    if(site_properties.from_local){
+        localStorage.setItem("EmployeePayrollList",JSON.stringify(empPayrollList));
+        document.querySelector(".emp-count").textContent = empPayrollList.length;
+        createInnerHTML();
+    }else{
+        let delURL=site_properties.json_host_server+empPayrollData.id;
+        makePromiseCall("DELETE", delURL, false)
+            .then(responseText => {
+            console.log("Del: "+employeePayrollObj._name);
+            document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHTML();
+        }).catch(error => {
+            console.log("DEL Error Staus: " + JSON.stringify(error));
+        });
+    }
 }
 
 function update(node){
