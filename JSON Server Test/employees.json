@@ -9,7 +9,7 @@
         "Finance"
       ],
       "_salary": "500000",
-      "_startDate": "29 Oct 2019",
+      "_startDate": "2019-10-28T18:30:00.000Z",
       "_note": "All In One",
       "_profilePic": "../assets/profile-images/Ellipse -3.png"
     },
@@ -21,7 +21,7 @@
         "Engineering"
       ],
       "_salary": "500000",
-      "_startDate": "29 Oct 2019",
+      "_startDate": "2019-10-28T18:30:00.000Z",
       "_note": "Terrific Engineer",
       "_profilePic": "../assets/profile-images/Ellipse -1.png"
     },
@@ -32,7 +32,7 @@
         "Sales"
       ],
       "_salary": "400000",
-      "_startDate": "29 Oct 2019",
+      "_startDate": "2019-10-28T18:30:00.000Z",
       "_note": "",
       "_profilePic": "../assets/profile-images/Ellipse -1.png",
       "id": 3
