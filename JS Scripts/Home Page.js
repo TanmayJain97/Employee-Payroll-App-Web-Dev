@@ -82,7 +82,7 @@ function createEmployeePayrollJson(){
             _department:['Engineering','Finance'],
             _salary:'500000',
             _startDate:'29 Oct 2019',
-            _note:'',
+            _notes:'',
             id: new Date().getTime(),
             _profilePic:'./Assets/profile-images/Ellipse -5.png'
         },
@@ -92,7 +92,7 @@ function createEmployeePayrollJson(){
             _department:['Sales'],
             _salary:'400000',
             _startDate:'18 Nov 2020',
-            _note:'',
+            _notes:'',
             id: new Date().getTime()+1,
             _profilePic:'./Assets/profile-images/Ellipse -7.png'
         }
