@@ -1,5 +1,5 @@
 # Employee-Payroll-App-Web-Dev
 
-Modified to UC 3 Stage 1 - Convert Employee Payroll App to Client Server Architecture
+Modified to UC 4 Stage 2 - Convert Employee Payroll App to Client Server Architecture
 
-Modify all Base functions as C-S specific
+Retrieve the Employee Payroll data from the JSON Server instead of Local Storage
