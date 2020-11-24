@@ -1,16 +1,37 @@
 let empPayrollList=new Array();
 
 window.addEventListener("DOMContentLoaded", (event) => {
-    empPayrollList = getEmpDataFromLocalStorage();
-    document.querySelector(".emp-count").textContent = empPayrollList.length;
-    createInnerHTML();
-    localStorage.removeItem("editEmp");
+    if (site_properties.from_local) getEmpDataFromLocalStorage();
+    else getEmpDataFromJSONServer();
+
+    processLocalStorageResponse();
 });
 
+
 function getEmpDataFromLocalStorage(){
-    return localStorage.getItem("EmployeePayrollList") ?
+    empPayrollList=localStorage.getItem("EmployeePayrollList") ?
         JSON.parse(localStorage.getItem("EmployeePayrollList")) : [];
+    
+    createInnerHTML();
 };
+
+function getEmpDataFromJSONServer(){
+    let getURL=site_properties.json_host_server;
+    makePromiseCall("GET",getURL,true)
+        .then(responseText => {
+        empPayrollList=(JSON.parse(responseText));
+        console.log(empPayrollList);
+        createInnerHTML();
+    }).catch(error => {
+        console.log("GET Error Staus: " + JSON.stringify(error));
+    });
+}
+
+function processLocalStorageResponse(){
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
+    
+    localStorage.removeItem("editEmp");
+}
 
 function createInnerHTML(){
     const headerHTML=
@@ -23,7 +44,8 @@ function createInnerHTML(){
         "<th>Actions</th>";
 
     if (empPayrollList.length==0){
-        console.log("No data found in Local Storage")
+        console.log(empPayrollList);
+        console.log("No data found");
         return;
     }
     let innerHTML=`${headerHTML}`;
