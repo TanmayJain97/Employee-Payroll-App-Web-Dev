@@ -137,7 +137,7 @@ function setEmployeePayrollObject() {
         start.push(document.getElementById('day').value);
         start.push(document.getElementById('month').value);
         start.push(document.getElementById('year').value);
-        employeePayrollObj._startDate = start;
+        employeePayrollObj._startDate=new Date(start[2],(start[1]-1),start[0]);
 
         employeePayrollObj._notes = document.getElementById('notes').value;
         console.log(employeePayrollObj);
