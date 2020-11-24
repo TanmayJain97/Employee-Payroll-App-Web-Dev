@@ -1,5 +1,5 @@
 # Employee-Payroll-App-Web-Dev
 
-Modified to UC 6 Stage 4 - Convert Employee Payroll App to Client Server Architecture
+Modified to UC 7 Stage 5 - Convert Employee Payroll App to Client Server Architecture
 
-Remove Employee Payroll data from the JSON Server
+Update Employee Payroll data in the JSON Server
