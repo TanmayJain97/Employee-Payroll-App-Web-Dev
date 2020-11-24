@@ -36,20 +36,6 @@
       "_note": "",
       "_profilePic": "../Assets/profile-images/Ellipse 1.png",
       "id": 3
-    },
-    {
-      "_name": "Pollen",
-      "_profilePic": "./Assets/profile-images/Ellipse -7.png",
-      "_gender": "F",
-      "_department": [
-        "HR",
-        "Marketing&Sales",
-        "Others"
-      ],
-      "_salary": "480000",
-      "_startDate": "2017-07-03T18:30:00.000Z",
-      "_notes": "",
-      "id": 4
     }
   ]
 }
